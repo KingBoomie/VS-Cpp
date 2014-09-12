@@ -2,18 +2,10 @@
 #include "functions.h"
 
 using namespace std;
-//
-float time(void(*f)(int)){
-	clock_t time = clock(); //get initial value of time
+
+void printNums(initializer_list<int> args) {
 	
-	(*f)(10000); //execute function in arg[0] with argument of it's own: 10000
-
-	time = clock() - time;
-	return (float)time / CLOCKS_PER_SEC;
-}
-
-void printNums(int count) {
-	vector<int> nums = getRand(count, 1, 1000);
+	vector<int> nums = getRand(args.begin()[0], args.begin()[1], args.begin()[2], args.begin()[3]);
 
 	for (auto i : nums){
 		cout << i << "\n";
@@ -22,7 +14,7 @@ void printNums(int count) {
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	cout << "Time: " << time(printNums) << " seconds.\n";
+	cout << "Time: " << timer(printNums, { 100000, 1, 100000, 1}) << " seconds.\n";
 	
 	return 0;
 }

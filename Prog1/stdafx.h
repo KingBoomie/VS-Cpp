@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <iostream>
-#include <cstdlib>
+#include <random>
 #include <vector>
 #include <ctime>
 #include <algorithm>
