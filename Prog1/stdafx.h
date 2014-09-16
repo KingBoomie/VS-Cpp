@@ -14,7 +14,12 @@
 #include <vector>
 #include <ctime>
 #include <algorithm>
-
+#include <thread>
+#include <atomic> 
+#include <cmath>
+#include <windows.h>
+#include <string>
+#include <cstdio>
 
 
 // TODO: reference additional headers your program requires here

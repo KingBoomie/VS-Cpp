@@ -3,6 +3,23 @@
 
 using namespace std;
 
+void getRand2(initializer_list<int> args){
+	vector<int> nums = getRand(args.begin()[0], args.begin()[1], args.begin()[2], args.begin()[3]);
+}
+
+void sqrttest(vector<int> nums){
+	for (auto i : nums){
+		sqrt(i);
+	}
+}
+
+void sintest(vector<int> nums){
+	for (auto i : nums){
+		atan2(i, i*2);
+	}
+}
+
+
 void printNums(initializer_list<int> args) {
 	
 	vector<int> nums = getRand(args.begin()[0], args.begin()[1], args.begin()[2], args.begin()[3]);
@@ -12,10 +29,18 @@ void printNums(initializer_list<int> args) {
 	}
 }
 
+
 int _tmain(int argc, _TCHAR* argv[])
 {
-	cout << "Time: " << timer(printNums, { 100000, 1, 100000, 1}) << " seconds.\n";
-	
+	//vector<int> nums = getRand( 10000000, 10000, 1000000 );
+
+	//cout << "Time: " << timer(sintest, nums) << " seconds.\n";
+	//cout << "Time: " << timer(sqrttest, nums) << " seconds.\n";
+	thread clock(consoleclock); 
+		int ha;
+		cin >> ha;
+
+		clock.join();
 	return 0;
 }
 
