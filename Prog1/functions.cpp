@@ -62,33 +62,41 @@ const std::string currentDateTime() {
 	localtime_s(&tstruct, &now);
 	// Visit http://en.cppreference.com/w/cpp/chrono/c/strftime
 	// for more information about date/time format
-	strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+	strftime(buf, sizeof(buf), "%X", &tstruct); // "%Y-%m-%d.%X" for year-month-day aswell
 
 	return buf;
 }
 
+
 // to print time to console
 void consoleclock(){
 
-	COORD      startcoord;
-	HANDLE     console = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD textCoord;
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO consoleinfo = { 0 };
+	std::string text;
 
-	startcoord.X = 0; startcoord.Y = 0;
+	COORD startPos;
+	startPos.X = 0; startPos.Y = 1;
+	SetConsoleCursorPosition(console, startPos); // put the starting position on the second row, clock takes the first one
+
+
+	textCoord.Y = 0;
 
 	while (true)
 	{
-		
-		CONSOLE_SCREEN_BUFFER_INFO consoleinfo = { 0 };
-		
-		GetConsoleScreenBufferInfo(console, &consoleinfo);
-		COORD returncoord = consoleinfo.dwCursorPosition;
-		//COORD returncoord;
-		//returncoord.X = 0; returncoord.Y = 2;
-		SetConsoleCursorPosition(console, startcoord); // moves to the coordinates
-		
-		std::cout << "The time is now: " << currentDateTime() << std::endl;
+		text = currentDateTime();
 
-		SetConsoleCursorPosition(console, returncoord); // moves to the coordinates CX
+		GetConsoleScreenBufferInfo(console, &consoleinfo);
+		COORD returncoord = consoleinfo.dwCursorPosition; // old cursor pos
+
+		textCoord.X = consoleinfo.dwMaximumWindowSize.X/2 - (text.size() + 1) / 2; // set x to the amount of space needed to center line
+
+		SetConsoleCursorPosition(console, textCoord); // moves to the coordinates
+		
+		std::cout << text;
+
+		SetConsoleCursorPosition(console, returncoord); // returns to original coordinates
 		Sleep(1000);
 	}
 }

@@ -32,15 +32,12 @@ void printNums(initializer_list<int> args) {
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//vector<int> nums = getRand( 10000000, 10000, 1000000 );
+	thread clock(consoleclock);
+	
+	
+	
 
-	//cout << "Time: " << timer(sintest, nums) << " seconds.\n";
-	//cout << "Time: " << timer(sqrttest, nums) << " seconds.\n";
-	thread clock(consoleclock); 
-		int ha;
-		cin >> ha;
-
-		clock.join();
+	clock.join();
 	return 0;
 }
 
