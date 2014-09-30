@@ -37,7 +37,7 @@ std::vector<int> getRand(int count, const int min, const int max, int type = 0){
 
 
 ///<summary>
-///Return: float seconds
+///Return: float seconds of running time
 ///<para>gets function pointer and arguments as an intializer list</para>
 ///</summary>
 float timer(void(*f)(std::initializer_list<int>), std::initializer_list<int> args){
