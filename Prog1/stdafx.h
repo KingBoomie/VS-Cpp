@@ -20,7 +20,7 @@
 #include <windows.h>
 #include <string>
 #include <cstdio>
-#include <array>
+#include <numeric>
 
 
 

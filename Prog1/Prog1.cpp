@@ -11,6 +11,7 @@
 #include <windows.h>
 #include <string>
 #include <cstdio>
+#include <numeric>
 */
 #include "functions.h"
 #include "euler.h"
@@ -49,59 +50,69 @@ vector<int> divisors(int num){
 	return divs;
 }
 
-int trianglenum(int count){
-	int tri = 0;
-	for (int i = 1; i <= count; ++i){
-		tri += i;
+long long raise_pow(long long num, unsigned int power){
+
+	if (power == 1){
+		return num;
 	}
-	return tri;
+	else if (power % 2 == 0){
+		return raise_pow(num * num, power / 2);
+	}
+	else{
+		return num * raise_pow(num * num, power / 2);
+	}
+	
 }
 
-void problem12(){
-	int i = 0;
-	while (divisors(trianglenum(i)).size() < 500){
-		i++;
+vector<long> prime_Sundaram(long max){
+	
+	vector<long> primes;
+	vector<long> sieve(max);
+
+	vector<long> toDelet(max);
+
+
+	iota(sieve.begin(), sieve.end(), 1); // fill with nums from 1 to max
+
+	bool loopBreak = 1;
+	for (int j = 1;loopBreak; ++j){ // remove the unneccesary nums
+		for (int i = 1;i < max/2; ++i){
+			if (i + j + 2 * i * j >= sieve.size() ){
+				continue;
+			}
+			sieve.erase(sieve.begin() + i + j + 2*i*j - 1);
+		}
 	}
-	cout << trianglenum(i);
+	return sieve;
 }
 
+bool check_prime(long long num){
+
+	if (num == 1) return true;
+	if (num == 2) return true;
+	if (num % 2 == 0) return false;
+
+
+	for (int i = 3; i*i <= num; i += 2){
+		if (num % i == 0){
+			return false;
+		}
+	}
+	return true;
+}
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//thread clock(consoleclock);
 	
 	Sleep(100);
 
-	cout << "Time taken: " << timer(getRand2, { 10000, 1, 1000000, 1}) << " seconds\n";
-	cout << "Time taken: " << timer(getRand2, { 10000, 1, 1000000, 3 }) << " seconds\n";
-	cout << "Time taken: " << timer(getRand2, { 10000, 1, 1000000, 4 }) << " seconds\n";
-	cout << "Time taken: " << timer(getRand2, { 10000, 1, 1000000, 0 }) << " seconds\n";
-	cout << "Time taken: " << timer(getRand2, { 10000, 1, 1000000, 5 }) << " seconds\n";
-	/*vector <int> input;
-	vector <vector <int> > allInput;
+	vector<long> arvud = prime_Sundaram(100);
+	for (auto i : arvud) cout << i << endl;
+	
+	/*for (auto i : arvud){
+		cout << i << (check_prime(i) ? " on algarv\n" : " ei ole algarv\n");
+	}*/
 
-	string temp = "notempty";
-
-	while (temp.size() != 0){
-		getline(cin, temp);
-		cout << temp << endl;
-		
-		for (int i = 0; i < 9; ++i){
-			input.push_back((int)temp.at(i));
-		}
-		allInput.push_back(input);
-	}
-
-	for (auto i : allInput){
-		for (auto j : i){
-			cout << j << " ";
-		}
-		cout << endl;
-	}
-
-	cout << "finised input";
-	//----------------------
-
-	*/
 
 	
 

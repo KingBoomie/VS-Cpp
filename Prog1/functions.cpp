@@ -1,12 +1,5 @@
-#include <iostream>
-#include <vector>
-#include <ctime>
-#include <algorithm>
-#include <random>
-#include <Windows.h>
-#include <string>
-#include <cstdio>
-#include <atomic>
+#include "stdafx.h"
+
 
 
 std::vector<int> getRand(const int count, const int min, const int max, const int type = 0){
