@@ -61,15 +61,14 @@ long long raise_pow(long long num, unsigned int power){
 	else{
 		return num * raise_pow(num * num, power / 2);
 	}
-	
 }
 
-vector<long> prime_Sundaram(long max){
+vector<long> prime_Sundaram(long max){ // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
 	
 	vector<long> primes;
 	vector<long> sieve(max);
 
-	vector<long> toDelet(max);
+	vector<long> toDelete(max);
 
 
 	iota(sieve.begin(), sieve.end(), 1); // fill with nums from 1 to max

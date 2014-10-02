@@ -77,37 +77,6 @@ std::vector<int> getRand(const int count, const int min, const int max, const in
 	return random_nums;
 }
 
-/*std::vector<float> getRand(const int count, const int min, const int max, int decimalPlaces = 3, const int type = 0){
-	//TODO: use templates
-	std::vector<float> random_nums(count);
-
-	decimalPlaces = 10 ^ decimalPlaces; //turn var something stating a num(3) to actual size (1000)
-
-	std::default_random_engine generator;
-	std::uniform_int_distribution<int> distribution(min * decimalPlaces, max * decimalPlaces); 
-	// raise the minimum and maximum, so the number could be in the correct size after division
-
-	for (int i = 0; i < count; ++i){
-		random_nums[i] = (float)distribution(generator) / decimalPlaces; 
-		// divide the random num to artificially create a number with a comma
-	}
-	if (type == 0){
-		std::cout << "Random numbers returned" << std::endl;
-
-	}
-	else if (type == 1){
-		sort(random_nums.begin(), random_nums.end());
-		std::cout << "Random sorted ascending numbers returned" << std::endl;
-
-	}
-	else if (type == 2){
-		sort(random_nums.begin(), random_nums.end(), [](int a, int b) { return b < a; });
-		std::cout << "Random sorted descending numbers returned" << std::endl;
-	}
-	return random_nums;
-}*/
-
-
 
 float timer(void(*f)(std::initializer_list<int>), std::initializer_list<int> args){
 	clock_t time = clock(); //get initial value of time

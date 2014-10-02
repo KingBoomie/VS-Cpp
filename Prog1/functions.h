@@ -8,12 +8,7 @@
 ///</summary>
 std::vector<int> getRand(const int count, const int min, const int max,const int type = 0);
 
-///<summary>
-///Return: vector of floats
-///<para>Usage: getRand (number of ints, minimum value, maximum value,</para>
-///decimal places, 0/1/2 = random sequence/sorted_asc/sorted_desc)
-///</summary>
-//std::vector<float> getRand(const int count, const int min, const int max, int decimalPlaces = 3, const int type = 0);
+
 
 ///<summary>
 ///Return: float seconds
