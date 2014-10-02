@@ -8,7 +8,11 @@
 ///</summary>
 std::vector<int> getRand(const int count, const int min, const int max,const int type = 0);
 
-
+/*
+Returns long long number that was put to a power
+Using exponation by squaring algorithm
+*/
+long long power(long long num, unsigned int power);
 
 ///<summary>
 ///Return: float seconds

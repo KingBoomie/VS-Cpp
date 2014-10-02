@@ -77,6 +77,19 @@ std::vector<int> getRand(const int count, const int min, const int max, const in
 	return random_nums;
 }
 
+long long power(long long num, unsigned int power){
+
+	if (power == 1){
+		return num;
+	}
+	else if (power % 2 == 0){
+		return pow(num * num, power / 2);
+	}
+	else{ // If not even, then mutilpy num separately
+		return num * pow(num * num, power / 2);
+	}
+}
+
 
 float timer(void(*f)(std::initializer_list<int>), std::initializer_list<int> args){
 	clock_t time = clock(); //get initial value of time
@@ -95,6 +108,8 @@ float timer(void(*f)(std::vector<int>), std::vector<int> args){
 	time = clock() - time;
 	return (float)time / CLOCKS_PER_SEC;
 }
+
+
 
 // Get current date/time, format is YYYY-MM-DD.HH:mm:ss
 const std::string currentDateTime() {

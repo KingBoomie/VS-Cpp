@@ -18,10 +18,6 @@
 
 using namespace std;
 
-void getRand2(initializer_list<int> args){
-	vector<int> nums = getRand(args.begin()[0], args.begin()[1], args.begin()[2], args.begin()[3]);
-}
-
 void printVec(vector<int> nums){
 	for (auto i : nums){
 		cout << i << " ";
@@ -29,18 +25,7 @@ void printVec(vector<int> nums){
 	cout << endl;
 }
 
-void printNums(initializer_list<int> args) {
-	
-	auto argsIt = args.begin();
-	
-	vector<int> nums = getRand(argsIt[0], argsIt[1], argsIt[2], argsIt[3]);
-
-	for (auto i : nums){
-		cout << i << "\n";
-	}
-}
-
-vector<int> divisors(int num){
+vector<int> naiveDivisors(int num){
 	vector<int> divs;
 	for (int i = 1; i <= num; ++i){
 		if (num % i == 0){
@@ -50,21 +35,12 @@ vector<int> divisors(int num){
 	return divs;
 }
 
-long long raise_pow(long long num, unsigned int power){
 
-	if (power == 1){
-		return num;
-	}
-	else if (power % 2 == 0){
-		return raise_pow(num * num, power / 2);
-	}
-	else{
-		return num * raise_pow(num * num, power / 2);
-	}
-}
 
-vector<long> prime_Sundaram(long max){ // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
+vector<long> primeSundaram(long max){ // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
 	
+	//TODO: finish this!
+
 	vector<long> primes;
 	vector<long> sieve(max);
 
@@ -85,7 +61,7 @@ vector<long> prime_Sundaram(long max){ // http://en.wikipedia.org/wiki/Sieve_of_
 	return sieve;
 }
 
-bool check_prime(long long num){
+bool checkPrime(long long num){
 
 	if (num == 1) return true;
 	if (num == 2) return true;
@@ -105,13 +81,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	
 	Sleep(100);
 
-	vector<long> arvud = prime_Sundaram(100);
+	cout << power(5, 7);
+	vector<long> arvud = primeSundaram(100);
 	for (auto i : arvud) cout << i << endl;
 	
 	/*for (auto i : arvud){
-		cout << i << (check_prime(i) ? " on algarv\n" : " ei ole algarv\n");
+		cout << i << (checkPrime(i) ? " on algarv\n" : " ei ole algarv\n");
 	}*/
-
+	
 
 	
 
