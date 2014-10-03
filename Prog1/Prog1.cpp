@@ -18,12 +18,15 @@
 
 using namespace std;
 
-void printVec(vector<int> nums){
+template <typename T>
+void print(T nums){
 	for (auto i : nums){
 		cout << i << " ";
 	}
 	cout << endl;
 }
+
+
 
 vector<int> naiveDivisors(int num){
 	vector<int> divs;
@@ -37,28 +40,40 @@ vector<int> naiveDivisors(int num){
 
 
 
-vector<long> primeSundaram(long max){ // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
+vector<long> prime_sundaram(long max){ // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
 	
-	//TODO: finish this!
+	//TODO: make it compile
 
 	vector<long> primes;
-	vector<long> sieve(max);
+	vector<long> test_thingy;
+	priority_queue<long, vector<long>, [](long a, long b) { return b < a; }> toDelete;
 
-	vector<long> toDelete(max);
-
-
-	iota(sieve.begin(), sieve.end(), 1); // fill with nums from 1 to max
 
 	bool loopBreak = 1;
-	for (int j = 1;loopBreak; ++j){ // remove the unneccesary nums
-		for (int i = 1;i < max/2; ++i){
-			if (i + j + 2 * i * j >= sieve.size() ){
-				continue;
+	for (int j = 1; j*2 < max; ++j){ 
+		for (int i = 1; i*2 < max; ++i){
+			if (i + j + 2 * i * j >= max ){
+				break;
+
 			}
-			sieve.erase(sieve.begin() + i + j + 2*i*j - 1);
+			toDelete.push(i + j + 2*i*j);
+			test_thingy.push_back(i + j + 2 * i * j);
+			cout << i + j + 2 * i*j << endl;
 		}
 	}
-	return sieve;
+	
+	// i + j + ji2
+	for (int i = 3; i < max; ++i){
+		if (i == toDelete.top()){
+			toDelete.pop();
+
+		}else{
+			primes.push_back(i * 2 + 1);
+		}
+	}
+
+
+	return primes;
 }
 
 bool checkPrime(long long num){
@@ -81,10 +96,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	
 	Sleep(100);
 
-	cout << power(5, 7);
-	vector<long> arvud = primeSundaram(100);
+	vector<long> arvud = primeSundaram(50);
+	cout << endl << endl;
 	for (auto i : arvud) cout << i << endl;
 	
+
 	/*for (auto i : arvud){
 		cout << i << (checkPrime(i) ? " on algarv\n" : " ei ole algarv\n");
 	}*/
