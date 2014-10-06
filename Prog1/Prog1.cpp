@@ -39,15 +39,28 @@ vector<int> naiveDivisors(int num){
 }
 
 
+template<typename T>
+void removeDupAndSort(&vector<T> vec, bool sortWay = 1){
+	if (sortWay) {
+		sort(vec.begin(), vec.end()); 
 
-vector<long> prime_sundaram(long max){ // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
+	}else{
+		sort(vec.begin(), vec.end(), [](int a, int b) { return b < a; });
+	
+	}
+	auto end_unique = unique(vec.begin(), vec.end()); // where the uniques end and duplicates start
+	vec.erase(end_unique, vec.end());
+}
+
+vector<long> primeSundaram(long max){ // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
 	
 	//TODO: make it compile
 
 	vector<long> primes;
-	vector<long> test_thingy;
-	priority_queue<long, vector<long>, [](long a, long b) { return b < a; }> toDelete;
 
+
+	//auto comp = [](long &a, long &b) -> {return a < b; };
+	vector<long> toDelete;
 
 	bool loopBreak = 1;
 	for (int j = 1; j*2 < max; ++j){ 
@@ -56,17 +69,20 @@ vector<long> prime_sundaram(long max){ // http://en.wikipedia.org/wiki/Sieve_of_
 				break;
 
 			}
-			toDelete.push(i + j + 2*i*j);
-			test_thingy.push_back(i + j + 2 * i * j);
-			cout << i + j + 2 * i*j << endl;
+
+			toDelete.push_back(i + j + 2*i*j);
+			//cout << i + j + 2 * i*j << endl;
 		}
 	}
-	
+
+	//remove duplicates
+	removeDupAndSort(toDelete*, false);
+
 	// i + j + ji2
 	for (int i = 3; i < max; ++i){
 		if (i == toDelete.top()){
-			toDelete.pop();
-
+			toDelete.();
+			//TODO fix this, now that i'm using vecotrs
 		}else{
 			primes.push_back(i * 2 + 1);
 		}
@@ -92,7 +108,7 @@ bool checkPrime(long long num){
 }
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//thread clock(consoleclock);
+	//thread consoleTime(consoleclock);
 	
 	Sleep(100);
 
@@ -108,7 +124,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	
 
-	//clock.join();
+	//consoleTime.join();
 	return 0;
 }
 

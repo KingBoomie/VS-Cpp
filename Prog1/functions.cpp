@@ -127,7 +127,7 @@ const std::string currentDateTime() {
 
 // to print time to console
 void consoleclock(){
-
+	
 	COORD textCoord;
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_SCREEN_BUFFER_INFO consoleinfo = { 0 };

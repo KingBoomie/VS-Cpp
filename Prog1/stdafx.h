@@ -22,6 +22,7 @@
 #include <cstdio>
 //#include <numeric>
 #include <queue>
+#include <functional>
 
 
 
