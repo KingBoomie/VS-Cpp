@@ -1,9 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Prog1", "Prog1\Prog1.vcxproj", "{80870B39-DD5F-4F7D-8ED9-B2AB522E1269}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{733C433D-717A-4FB5-BBC3-2EF8E97A93A7}"
+	ProjectSection(SolutionItems) = preProject
+		Performance2.psess = Performance2.psess
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Node1", "Node1\Node1.vcxproj", "{3F5F1F86-0370-4AE4-8AF2-94F0D09865BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +22,15 @@ Global
 		{80870B39-DD5F-4F7D-8ED9-B2AB522E1269}.Debug|Win32.Build.0 = Debug|Win32
 		{80870B39-DD5F-4F7D-8ED9-B2AB522E1269}.Release|Win32.ActiveCfg = Release|Win32
 		{80870B39-DD5F-4F7D-8ED9-B2AB522E1269}.Release|Win32.Build.0 = Release|Win32
+		{3F5F1F86-0370-4AE4-8AF2-94F0D09865BF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3F5F1F86-0370-4AE4-8AF2-94F0D09865BF}.Debug|Win32.Build.0 = Debug|Win32
+		{3F5F1F86-0370-4AE4-8AF2-94F0D09865BF}.Release|Win32.ActiveCfg = Release|Win32
+		{3F5F1F86-0370-4AE4-8AF2-94F0D09865BF}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

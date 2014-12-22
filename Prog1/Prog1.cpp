@@ -13,8 +13,10 @@
 #include <cstdio>
 #include <numeric>
 */
+
 #include "functions.h"
 #include "euler.h"
+#include "BloomFilter.h"
 
 using namespace std;
 
@@ -26,8 +28,6 @@ void print(T nums){
 	cout << endl;
 }
 
-
-
 vector<int> naiveDivisors(int num){
 	vector<int> divs;
 	for (int i = 1; i <= num; ++i){
@@ -38,93 +38,43 @@ vector<int> naiveDivisors(int num){
 	return divs;
 }
 
-
-template<typename T>
-void removeDupAndSort(&vector<T> vec, bool sortWay = 1){
-	if (sortWay) {
-		sort(vec.begin(), vec.end()); 
-
-	}else{
-		sort(vec.begin(), vec.end(), [](int a, int b) { return b < a; });
-	
-	}
-	auto end_unique = unique(vec.begin(), vec.end()); // where the uniques end and duplicates start
-	vec.erase(end_unique, vec.end());
+void printTime(float time){
+		cout << "Function running time: " << time << "\n";
 }
 
-vector<long> primeSundaram(long max){ // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
-	
-	//TODO: make it compile
 
-	vector<long> primes;
-
-
-	//auto comp = [](long &a, long &b) -> {return a < b; };
-	vector<long> toDelete;
-
-	bool loopBreak = 1;
-	for (int j = 1; j*2 < max; ++j){ 
-		for (int i = 1; i*2 < max; ++i){
-			if (i + j + 2 * i * j >= max ){
-				break;
-
-			}
-
-			toDelete.push_back(i + j + 2*i*j);
-			//cout << i + j + 2 * i*j << endl;
+vector<int> combinations(int num){
+	string str = to_string(num);
+	vector<int> combinations;
+	for (int i = 0; i < power(2, str.size());++i){
+		for (int j = 0; j < str.size(); ++j){
+			if (i & (j << 1));
+			combinations.push_back(j);
 		}
 	}
-
-	//remove duplicates
-	removeDupAndSort(toDelete*, false);
-
-	// i + j + ji2
-	for (int i = 3; i < max; ++i){
-		if (i == toDelete.top()){
-			toDelete.();
-			//TODO fix this, now that i'm using vecotrs
-		}else{
-			primes.push_back(i * 2 + 1);
-		}
-	}
-
-
-	return primes;
+	return combinations;
 }
 
-bool checkPrime(long long num){
-
-	if (num == 1) return true;
-	if (num == 2) return true;
-	if (num % 2 == 0) return false;
 
 
-	for (int i = 3; i*i <= num; i += 2){
-		if (num % i == 0){
-			return false;
-		}
-	}
-	return true;
-}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//thread consoleTime(consoleclock);
-	
-	Sleep(100);
+	thread consoleTime(consoleclock);
+	Sleep(10);
 
-	vector<long> arvud = primeSundaram(50);
-	cout << endl << endl;
-	for (auto i : arvud) cout << i << endl;
-	
+	//print (divisiors (100));
+	string str = "Tere";
 
-	/*for (auto i : arvud){
-		cout << i << (checkPrime(i) ? " on algarv\n" : " ei ole algarv\n");
-	}*/
-	
+	BloomFilter filter (20);
 
-	
+	filter.insert (str);
 
-	//consoleTime.join();
+	cout << filter.test ("Teree") << endl;
+	cout << filter.test (str) << endl;
+	filter.printBitA();
+
+	consoleTime.join();
 	return 0;
 }
 

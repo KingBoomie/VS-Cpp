@@ -2,7 +2,7 @@
 
 
 
-std::vector<int> getRand(const int count, const int min, const int max, const int type = 0){
+std::vector<int> getRand(const unsigned count, const int min, const int max, const int type = 0){
 	//TODO: use templates
 
 	std::vector<int> random_nums(count);
@@ -55,7 +55,7 @@ std::vector<int> getRand(const int count, const int min, const int max, const in
 
 	} 
 	else if (type == 4){ // descending w/o duplicates
-		for (int i = 0; i < count; ++i){
+		for (unsigned i = 0; i < count; ++i){
 			random_nums[i] = distribution(generator); // generate random int flat in [min, max]
 		}
 
@@ -77,7 +77,11 @@ std::vector<int> getRand(const int count, const int min, const int max, const in
 	return random_nums;
 }
 
-long long power(long long num, unsigned int power){
+long long power(int num, unsigned int power){
+
+	if (num == 2) {
+		return 1 << power;
+	}
 
 	if (power == 1){
 		return num;
@@ -90,25 +94,97 @@ long long power(long long num, unsigned int power){
 	}
 }
 
+template<typename T>
+bool checkPrime(T num){
 
-float timer(void(*f)(std::initializer_list<int>), std::initializer_list<int> args){
+	if (num == 1) return true;
+	if (num == 2) return true;
+	if (num % 2 == 0) return false;
+
+	std::vector<T> primes = primeSundaram(sqrt(num));
+
+	for (auto prime : primes){
+		if (num % prime == 0){
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/*
+template <typename T, typename A>
+std::vector<T, A> primeSundaram(T max){ // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
+
+	max /= 2; // This will output all nums 2xMax + 1, so max needs to be 2 times smaller
+
+	vector<T, A> primes;
+	vector<bool> toDelete(max, false);
+
+	for (int j = 1; j * 2 < max; ++j){
+		for (int i = 1; i * 2 < max; ++i){
+			if (i + j + 2 * i * j >= max){
+				break;
+			}
+			toDelete[i + j + 2 * i*j] = true;
+		}
+	}
+
+	for (int i = 3; i < max; ++i){
+		if (toDelete[i]){
+			continue;
+		}
+		else{
+			primes.push_back(i * 2 + 1);
+		}
+	}
+
+	return primes;
+}
+*/
+std::vector<int> primeSundaram (int max) { // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
+
+	max /= 2; // This will output all nums 2xMax + 1, so max needs to be 2 times smaller
+
+	std::vector<int> primes;
+	std::vector<bool> toDelete (max, false);
+
+	primes.push_back (2);
+	primes.push_back (3);
+	primes.push_back (5);
+
+	for (int j = 1; j * 2 < max; ++j) {
+		for (int i = 1; i * 2 < max; ++i) {
+			if (i + j + 2 * i * j >= max) {
+				break;
+			}
+			toDelete[i + j + 2 * i*j] = true;
+		}
+	}
+
+	for (int i = 3; i < max; ++i) {
+		if (toDelete[i]) {
+			continue;
+		} else {
+			primes.push_back (i * 2 + 1);
+		}
+	}
+
+	return primes;
+}
+
+////////////////////////////////////////////////////////
+//					Misc funtions
+////////////////////////////////////////////////////////
+
+float timer(std::function<void()> f){
 	clock_t time = clock(); //get initial value of time
 
-	(*f)(args); //execute function
+	f(); //execute function
 
 	time = clock() - time;
 	return (float)time / CLOCKS_PER_SEC;
 }
-
-float timer(void(*f)(std::vector<int>), std::vector<int> args){
-	clock_t time = clock(); //get initial value of time
-
-	(*f)(args); //execute function
-
-	time = clock() - time;
-	return (float)time / CLOCKS_PER_SEC;
-}
-
 
 
 // Get current date/time, format is YYYY-MM-DD.HH:mm:ss
@@ -126,6 +202,7 @@ const std::string currentDateTime() {
 
 
 // to print time to console
+
 void consoleclock(){
 	
 	COORD textCoord;
@@ -139,7 +216,8 @@ void consoleclock(){
 
 	textCoord.Y = 0;
 
-	while (true)
+
+	while (!GetAsyncKeyState(0x46))
 	{
 		text = currentDateTime();
 

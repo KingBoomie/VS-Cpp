@@ -9,19 +9,6 @@
 
 #include <stdio.h>
 #include <tchar.h>
-#include <iostream>
-#include <random>
-#include <vector>
-#include <ctime>
-#include <algorithm>
-#include <thread>
-#include <atomic> 
-#include <cmath>
-#include <windows.h>
-#include <string>
-#include <cstdio>
-//#include <numeric>
-#include <set>
 
 
 
