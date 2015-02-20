@@ -58,10 +58,9 @@ void printTime(float time){
 
 
 
-int _tmain(int argc, _TCHAR* argv[])
-{
-	thread consoleTime(consoleclock);
-	Sleep(10);
+
+
+	
 
 
 	consoleTime.join ();

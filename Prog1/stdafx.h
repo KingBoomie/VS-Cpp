@@ -22,7 +22,8 @@
 #include <cstdio>
 //#include <numeric>
 #include <set>
-#include <bitset>
+#include <array>
+#include <iostream>
 
 
 
