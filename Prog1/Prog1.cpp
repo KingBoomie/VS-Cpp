@@ -43,17 +43,17 @@ void printTime(float time){
 }
 
 
-vector<int> combinations(int num){
-	string str = to_string(num);
-	vector<int> combinations;
-	for (int i = 0; i < power(2, str.size());++i){
-		for (int j = 0; j < str.size(); ++j){
-			if (i & (j << 1));
-			combinations.push_back(j);
-		}
-	}
-	return combinations;
-}
+//vector<int> combinations(int num){
+//	string str = to_string(num);
+//	vector<int> combinations;
+//	for (int i = 0; i < power(2, str.size());++i){
+//		for (int j = 0; j < str.size(); ++j){
+//			if (i & (j << 1));
+//			combinations.push_back(j);
+//		}
+//	}
+//	return combinations;
+//}
 
 
 
@@ -63,18 +63,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	thread consoleTime(consoleclock);
 	Sleep(10);
 
-	//print (divisiors (100));
-	string str = "Tere";
 
-	BloomFilter filter (20);
-
-	filter.insert (str);
-
-	cout << filter.test ("Teree") << endl;
-	cout << filter.test (str) << endl;
-	filter.printBitA();
-
-	consoleTime.join();
+	consoleTime.join ();
 	return 0;
 }
 

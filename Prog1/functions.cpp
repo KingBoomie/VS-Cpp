@@ -1,8 +1,6 @@
 #include "stdafx.h"
 
-
-
-std::vector<int> getRand(const unsigned count, const int min, const int max, const int type = 0){
+std::vector<int> getRand(const unsigned count, const int min, const int max, const int type){
 	//TODO: use templates
 
 	std::vector<int> random_nums(count);
@@ -77,20 +75,35 @@ std::vector<int> getRand(const unsigned count, const int min, const int max, con
 	return random_nums;
 }
 
-long long power(int num, unsigned int power){
+//long long power(int num, unsigned int power){
+//
+//	if (num == 2) {
+//		return 1 << power;
+//	}
+//
+//	if (power == 1){
+//		return num;
+//	}
+//	else if (power % 2 == 0){
+//		return power(num * num, power / 2);
+//	}
+//	else{ // If not even, then mutilpy num separately
+//		return num * power(num * num, power / 2);
+//	}
+//}
+template <typename T>
+T power (T num, unsigned int power) {
 
 	if (num == 2) {
 		return 1 << power;
 	}
 
-	if (power == 1){
+	if (power == 1) {
 		return num;
-	}
-	else if (power % 2 == 0){
-		return pow(num * num, power / 2);
-	}
-	else{ // If not even, then mutilpy num separately
-		return num * pow(num * num, power / 2);
+	} else if (power % 2 == 0) {
+		return power (num * num, power / 2);
+	} else { // If not even, then mutilpy num separately
+		return num * power (num * num, power / 2);
 	}
 }
 
@@ -172,6 +185,10 @@ std::vector<int> primeSundaram (int max) { // http://en.wikipedia.org/wiki/Sieve
 
 	return primes;
 }
+
+//long long fibonacci (unsigned int i) {
+//	return (power (1.0 + sqrt (5), i) - power (1 - sqrt (5), i)) / (power (2, i) * sqrt (5));
+//}
 
 ////////////////////////////////////////////////////////
 //					Misc funtions

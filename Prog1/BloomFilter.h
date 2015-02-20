@@ -8,10 +8,10 @@ using namespace std;
 
 class BloomFilter {
 
-	const int filterSize; //m 10
-	const int hashNum; // k 1
+	int filterSize; //m 10
+	int hashNum; // k 1
 	const int elementNum; // n 20
-	const double probablilityFalsePositive = 2.0;
+	const double probablilityFalsePositive = 0.1;
 
 	std::vector<bool> bitArr;
 
@@ -32,7 +32,7 @@ public:
 	}
 };
 
-static std::tuple<unsigned, unsigned> fnv_hash (std::string data) {
+static std::tuple<unsigned, unsigned> fnv_hash(std::string data) {
 
 	//const unsigned offset_basis = 2166136261; // 32bit
 	//const unsigned FNV_prime = 16777619; //32 bit

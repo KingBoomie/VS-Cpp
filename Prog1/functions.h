@@ -7,7 +7,8 @@
 /** Returns long long number that was put to a power
 * Using exponation by squaring algorithm
 */
-long long power(int num, unsigned int power);
+template <typename T>
+T power (int num, unsigned int power);
 
 /*
 	Checks for prime by trying out every number
@@ -21,6 +22,8 @@ bool checkPrime(T num);
 //template <typename T, typename A>
 //std::vector<T, A> primeSundaram(T max);
 std::vector<int> primeSundaram (int max);
+
+//long long fibonacci (int i);
 
 //////////////////////////////////////
 //			Misc functions

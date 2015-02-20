@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{80870B39-DD5F-4F7D-8ED9-B2AB522E1269}</ProjectGuid>
+    <ProjectGuid>{BE9F7A42-0AFB-4115-95FC-990EF75C379A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Prog1</RootNamespace>
+    <RootNamespace>Network</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -78,22 +78,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BloomFilter.h" />
-    <ClInclude Include="Euler.h" />
-    <ClInclude Include="functions.h" />
-    <ClInclude Include="LevenshteinDistance.hpp" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Network.hpp" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BloomFilter.cpp" />
-    <ClCompile Include="functions.cpp" />
-    <ClCompile Include="Euler.cpp" />
-    <ClCompile Include="Prog1.cpp" />
-    <ClCompile Include="stdafx.cpp" />
+    <Text Include="test.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
