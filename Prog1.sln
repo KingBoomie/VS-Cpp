@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Prog1", "Prog1\Prog1.vcxproj", "{80870B39-DD5F-4F7D-8ED9-B2AB522E1269}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1999-2000 lahendused", "1999-2000 lahendused\1999-2000 lahendused.vcxproj", "{23FF3036-C799-45E3-8117-1BE26627606B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Olympiaadide lahendused", "1999-2000 lahendused\1999-2000 lahendused.vcxproj", "{23FF3036-C799-45E3-8117-1BE26627606B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

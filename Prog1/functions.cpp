@@ -1,15 +1,8 @@
-#include <iostream>
-#include <vector>
-#include <ctime>
-#include <algorithm>
-#include <random>
-#include <Windows.h>
-#include <string>
-#include <cstdio>
-#include <atomic>
+#include "stdafx.h"
 
 
-std::vector<int> getRand(const int count, const int min, const int max, const int type = 0){
+
+std::vector<int> getRand(const unsigned count, const int min, const int max, const int type = 0){
 	//TODO: use templates
 
 	std::vector<int> random_nums(count);
@@ -62,7 +55,7 @@ std::vector<int> getRand(const int count, const int min, const int max, const in
 
 	} 
 	else if (type == 4){ // descending w/o duplicates
-		for (int i = 0; i < count; ++i){
+		for (unsigned i = 0; i < count; ++i){
 			random_nums[i] = distribution(generator); // generate random int flat in [min, max]
 		}
 
@@ -84,55 +77,115 @@ std::vector<int> getRand(const int count, const int min, const int max, const in
 	return random_nums;
 }
 
-/*std::vector<float> getRand(const int count, const int min, const int max, int decimalPlaces = 3, const int type = 0){
-	//TODO: use templates
-	std::vector<float> random_nums(count);
+long long power(int num, unsigned int power){
 
-	decimalPlaces = 10 ^ decimalPlaces; //turn var something stating a num(3) to actual size (1000)
-
-	std::default_random_engine generator;
-	std::uniform_int_distribution<int> distribution(min * decimalPlaces, max * decimalPlaces); 
-	// raise the minimum and maximum, so the number could be in the correct size after division
-
-	for (int i = 0; i < count; ++i){
-		random_nums[i] = (float)distribution(generator) / decimalPlaces; 
-		// divide the random num to artificially create a number with a comma
+	if (num == 2) {
+		return 1 << power;
 	}
-	if (type == 0){
-		std::cout << "Random numbers returned" << std::endl;
 
+	if (power == 1){
+		return num;
 	}
-	else if (type == 1){
-		sort(random_nums.begin(), random_nums.end());
-		std::cout << "Random sorted ascending numbers returned" << std::endl;
-
+	else if (power % 2 == 0){
+		return pow(num * num, power / 2);
 	}
-	else if (type == 2){
-		sort(random_nums.begin(), random_nums.end(), [](int a, int b) { return b < a; });
-		std::cout << "Random sorted descending numbers returned" << std::endl;
+	else{ // If not even, then mutilpy num separately
+		return num * pow(num * num, power / 2);
 	}
-	return random_nums;
-}*/
+}
 
+template<typename T>
+bool checkPrime(T num){
 
+	if (num == 1) return true;
+	if (num == 2) return true;
+	if (num % 2 == 0) return false;
 
-float timer(void(*f)(std::initializer_list<int>), std::initializer_list<int> args){
+	std::vector<T> primes = primeSundaram(sqrt(num));
+
+	for (auto prime : primes){
+		if (num % prime == 0){
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/*
+template <typename T, typename A>
+std::vector<T, A> primeSundaram(T max){ // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
+
+	max /= 2; // This will output all nums 2xMax + 1, so max needs to be 2 times smaller
+
+	vector<T, A> primes;
+	vector<bool> toDelete(max, false);
+
+	for (int j = 1; j * 2 < max; ++j){
+		for (int i = 1; i * 2 < max; ++i){
+			if (i + j + 2 * i * j >= max){
+				break;
+			}
+			toDelete[i + j + 2 * i*j] = true;
+		}
+	}
+
+	for (int i = 3; i < max; ++i){
+		if (toDelete[i]){
+			continue;
+		}
+		else{
+			primes.push_back(i * 2 + 1);
+		}
+	}
+
+	return primes;
+}
+*/
+std::vector<int> primeSundaram (int max) { // http://en.wikipedia.org/wiki/Sieve_of_Sundaram
+
+	max /= 2; // This will output all nums 2xMax + 1, so max needs to be 2 times smaller
+
+	std::vector<int> primes;
+	std::vector<bool> toDelete (max, false);
+
+	primes.push_back (2);
+	primes.push_back (3);
+	primes.push_back (5);
+
+	for (int j = 1; j * 2 < max; ++j) {
+		for (int i = 1; i * 2 < max; ++i) {
+			if (i + j + 2 * i * j >= max) {
+				break;
+			}
+			toDelete[i + j + 2 * i*j] = true;
+		}
+	}
+
+	for (int i = 3; i < max; ++i) {
+		if (toDelete[i]) {
+			continue;
+		} else {
+			primes.push_back (i * 2 + 1);
+		}
+	}
+
+	return primes;
+}
+
+////////////////////////////////////////////////////////
+//					Misc funtions
+////////////////////////////////////////////////////////
+
+float timer(std::function<void()> f){
 	clock_t time = clock(); //get initial value of time
 
-	(*f)(args); //execute function
+	f(); //execute function
 
 	time = clock() - time;
 	return (float)time / CLOCKS_PER_SEC;
 }
 
-float timer(void(*f)(std::vector<int>), std::vector<int> args){
-	clock_t time = clock(); //get initial value of time
-
-	(*f)(args); //execute function
-
-	time = clock() - time;
-	return (float)time / CLOCKS_PER_SEC;
-}
 
 // Get current date/time, format is YYYY-MM-DD.HH:mm:ss
 const std::string currentDateTime() {
@@ -149,8 +202,9 @@ const std::string currentDateTime() {
 
 
 // to print time to console
-void consoleclock(){
 
+void consoleclock(){
+	
 	COORD textCoord;
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_SCREEN_BUFFER_INFO consoleinfo = { 0 };
@@ -162,7 +216,8 @@ void consoleclock(){
 
 	textCoord.Y = 0;
 
-	while (true)
+
+	while (!GetAsyncKeyState(0x46))
 	{
 		text = currentDateTime();
 
