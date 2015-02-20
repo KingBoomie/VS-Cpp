@@ -65,44 +65,31 @@ void problem12(){
 	cout << trianglenum(i);
 }
 
+pair<string, string> split(string str, char splitter){
+	size_t split = str.find(splitter);
+	return make_pair<string, string>(str.substr(0, splitter), str.substr(splitter));
+}
+
+
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//thread clock(consoleclock);
 	
 	Sleep(100);
 
-	cout << "Time taken: " << timer(getRand2, { 10000, 1, 1000000, 1}) << " seconds\n";
-	cout << "Time taken: " << timer(getRand2, { 10000, 1, 1000000, 3 }) << " seconds\n";
-	cout << "Time taken: " << timer(getRand2, { 10000, 1, 1000000, 4 }) << " seconds\n";
-	cout << "Time taken: " << timer(getRand2, { 10000, 1, 1000000, 0 }) << " seconds\n";
-	cout << "Time taken: " << timer(getRand2, { 10000, 1, 1000000, 5 }) << " seconds\n";
-	/*vector <int> input;
-	vector <vector <int> > allInput;
+	int num_of_lines;
+	cin >> num_of_lines;
 
-	string temp = "notempty";
-
-	while (temp.size() != 0){
-		getline(cin, temp);
-		cout << temp << endl;
-		
-		for (int i = 0; i < 9; ++i){
-			input.push_back((int)temp.at(i));
-		}
-		allInput.push_back(input);
+	string dir;
+	vector<string> lines(num_of_lines);
+	for (auto &line : lines){
+		cin >> line;
 	}
 
-	for (auto i : allInput){
-		for (auto j : i){
-			cout << j << " ";
-		}
-		cout << endl;
-	}
+	cin >> dir;
 
-	cout << "finised input";
-	//----------------------
-
-	*/
-
+	cout << 
 	
 
 	//clock.join();
