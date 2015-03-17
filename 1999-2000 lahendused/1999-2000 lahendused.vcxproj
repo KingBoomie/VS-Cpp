@@ -89,6 +89,9 @@
   <ItemGroup>
     <None Include="rv.sis" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lahendused_2004.hpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,7 +1,7 @@
 #pragma once
 #include <fstream>
 #include <vector>
-#include <string.h>
+#include <string>
 #include <sstream>
 
 namespace y2008{
