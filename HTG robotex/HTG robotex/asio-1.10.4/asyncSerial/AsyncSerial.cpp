@@ -286,7 +286,7 @@ void AsyncSerial::clearReadCallback()
 #include <termios.h>
 #include <unistd.h>
 
-class AsyncSerialImpl: private boost::noncopyable
+class AsyncSerialImpl: private noncopyable
 {
 public:
     AsyncSerialImpl(): backgroundThread(), open(false), error(false) {}
@@ -553,6 +553,11 @@ void CallbackAsyncSerial::setCallback(const
 void CallbackAsyncSerial::clearCallback()
 {
     clearReadCallback();
+}
+
+
+CallbackAsyncSerial& CallbackAsyncSerial::operator=(const CallbackAsyncSerial &rhs) {
+	  return CallbackAsyncSerial(rhs);
 }
 
 CallbackAsyncSerial::~CallbackAsyncSerial()

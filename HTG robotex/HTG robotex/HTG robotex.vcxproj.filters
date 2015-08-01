@@ -18,7 +18,10 @@
     <ClCompile Include="HTG_robotex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="asio-1.10.4\async serial\AsyncSerial.cpp">
+    <ClCompile Include="asio-1.10.4\asyncSerial\AsyncSerial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wheel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,7 +35,13 @@
     <ClInclude Include="..\..\..\..\..\Documents\Libraries\asio-1.10.4\include\asio.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="asio-1.10.4\async serial\AsyncSerial.h">
+    <ClInclude Include="asio-1.10.4\asyncSerial\AsyncSerial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wheel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PortScanner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

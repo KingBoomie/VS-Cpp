@@ -156,7 +156,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Boomie\Documents\Libraries\asio-1.10.4\include;C:\Users\Boomie\Source\Repos\VS-Cpp\HTG robotex\HTG robotex\asio-1.10.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -229,14 +229,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="asio-1.10.4\async serial\AsyncSerial.cpp" />
+    <ClCompile Include="asio-1.10.4\asyncSerial\AsyncSerial.cpp" />
     <ClCompile Include="HTG_robotex.cpp" />
+    <ClCompile Include="wheel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\Documents\Libraries\asio-1.10.4\include\asio.hpp" />
-    <ClInclude Include="asio-1.10.4\async serial\AsyncSerial.h" />
+    <ClInclude Include="asio-1.10.4\asyncSerial\AsyncSerial.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="PortScanner.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="wheel.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HTG robotex.rc" />

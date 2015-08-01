@@ -1,34 +1,36 @@
 #pragma once
 #include <array>
 
-class config {
-public:
-	struct motor_info {
+namespace config {
+
+	typedef struct {
 		int id; // Motors will be 0, 1, 2
 		double orientation; // in unit vectors
-		motor_info (int _id, double _orientation) : id(_id), orientation(_orientation) {}
-	};
-	//TODO: add actual orientations to motors (-1/sqrt(12) and so on...)
-	motor_info motor0 { 0, 0.0 };
-	motor_info motor1 { 1, 0.0 };
-	motor_info motor2 { 2, 0.0 };
+	} motor_info;
 
-	const int camera_refresh_rate = 30; // in Frames Per Second
-	const int coilgun_max_power = 32000; // Percentages of coilgun power
+	//TODO: add actual orientations to motors (-1/sqrt(12) and so on...)
+	static motor_info motor0{ 0, 0.0 };
+	static motor_info motor1{ 1, 0.0 };
+	static motor_info motor2{ 2, 0.0 };
+
+	static const int camera_refresh_rate = 30;	  // in Frames Per Second
+	static const int coilgun_max_power = 32000;  // Percentages of coilgun power
+
+	// Connection data
+	static const unsigned int baudrate = 115200;
+	/** All others are default and unnecessary
+	const int parity = 0;	  // none
+	const int csize = 8;
+	const int flowcontrol = 0; //none
+	const int stopbits = 1;
+	*/
 	
 	
 
 #ifdef _WIN32 // Windows specific data
-	const std::array<std::string, 20> comports = std::array<std::string, 20>{
-			"\\\\.\\COM1", "\\\\.\\COM2", "\\\\.\\COM3", "\\\\.\\COM4",
-			"\\\\.\\COM5", "\\\\.\\COM6", "\\\\.\\COM7", "\\\\.\\COM8",
-			"\\\\.\\COM9", "\\\\.\\COM10", "\\\\.\\COM11", "\\\\.\\COM12",
-			"\\\\.\\COM13", "\\\\.\\COM14", "\\\\.\\COM15", "\\\\.\\COM16",
-			"\\\\.\\COM17", "\\\\.\\COM18", "\\\\.\\COM19", "\\\\.\\COM20" 
-		} ;
 
 
-#elif // Not windows aka linux
+#elif // Not windows aka Linux
 	std::array<std::string, 25> comports = {{
 			"/dev/ttyACM0", "/dev/ttyACM1", "/dev/ttyACM2", "/dev/ttyACM3",  // Changed S0 to ACM2, S1 to ACM3
 			"/dev/ttyACM5", "/dev/ttyACM5", "/dev/ttyACM6", "/dev/ttyACM7",
@@ -42,4 +44,6 @@ public:
 #endif // _WIN32
 	
 };
+
+
 

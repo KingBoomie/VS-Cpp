@@ -14,7 +14,12 @@
 #include <system_error>
 #include <memory>
 
-#include "asio.hpp"
+#ifdef _WIN32
+	  #define _WIN32_WINNT 0x0602
+#endif
+
+#define ASIO_STANDALONE
+#include "../include/asio.hpp"
 
 /**
  * Used internally (pimpl)
@@ -228,6 +233,11 @@ public:
      * be lost.
      */
     void clearCallback();
+
+	/**
+	 * Copy assingment
+	*/
+	CallbackAsyncSerial& operator= (const CallbackAsyncSerial &rhs);
 
     virtual ~CallbackAsyncSerial();
 };
